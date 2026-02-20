@@ -1,0 +1,11 @@
+[package]
+name = "gitpersona-auth"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gitpersona-core = { path = "../../crates/core" }
+anyhow = { workspace = true }
+reqwest = { workspace = true }
+serde = { workspace = true }
+tokio = { workspace = true }

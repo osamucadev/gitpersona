@@ -1,0 +1,13 @@
+[package]
+name = "gitpersona-credential-helper"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "gitpersona-helper"
+path = "src/main.rs"
+
+[dependencies]
+serde_json = { workspace = true }
+keyring = { version = "2" }
+dirs = "5"
