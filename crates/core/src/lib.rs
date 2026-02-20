@@ -2,6 +2,20 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
+/// SSH key state for a profile.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Default)]
+#[serde(rename_all = "camelCase")]
+pub struct SshInfo {
+    /// Whether this profile has an SSH key configured
+    pub configured: bool,
+    /// Absolute path to the private key file
+    pub key_path: Option<String>,
+    /// The public key content (for display and GitHub registration)
+    pub public_key: Option<String>,
+    /// GitHub key ID (for deletion via API)
+    pub github_key_id: Option<u64>,
+}
+
 /// A Git identity profile managed by Git Persona.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
@@ -15,6 +29,9 @@ pub struct Profile {
     pub git_email: String,
     /// GitHub account linked to this profile
     pub github: GitHubInfo,
+    /// SSH key linked to this profile
+    #[serde(default)]
+    pub ssh: SshInfo,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
 }
@@ -28,6 +45,7 @@ impl Profile {
             git_name,
             git_email,
             github: GitHubInfo::default(),
+            ssh: SshInfo::default(),
             created_at: now,
             updated_at: now,
         }

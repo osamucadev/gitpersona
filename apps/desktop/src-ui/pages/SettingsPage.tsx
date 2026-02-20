@@ -2,19 +2,17 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
-  CheckCircle,
   ChevronRight,
   Copy,
   Monitor,
-  Moon,
   Power,
   RefreshCw,
   Shield,
 } from "lucide-react";
 import toast from "react-hot-toast";
-import { getDiagnostics, setAutostart, getSettings } from "@/lib/tauri";
+import { getDiagnostics, setAutostart } from "@/lib/tauri";
 import { useStore } from "@/store/useStore";
-import type { AppSettings, Diagnostics } from "@/types";
+import type { Diagnostics } from "@/types";
 import { cn } from "@/lib/utils";
 
 export function SettingsPage() {
@@ -205,7 +203,7 @@ export function SettingsPage() {
                 onClick={(e) => {
                   e.preventDefault();
                   import("@tauri-apps/plugin-shell").then(({ open }) =>
-                    open("https://github.com/your-org/gitpersona"),
+                    open("https://github.com/osamucadev/gitpersona"),
                   );
                 }}
               >

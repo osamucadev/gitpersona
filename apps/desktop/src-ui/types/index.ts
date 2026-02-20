@@ -4,12 +4,20 @@ export interface GitHubInfo {
   tokenRef?: string;
 }
 
+export interface SshInfo {
+  configured: boolean;
+  keyPath?: string;
+  publicKey?: string;
+  githubKeyId?: number;
+}
+
 export interface Profile {
   id: string;
   label: string;
   gitName: string;
   gitEmail: string;
   github: GitHubInfo;
+  ssh: SshInfo;
   createdAt: string;
   updatedAt: string;
 }

@@ -73,6 +73,9 @@ pub async fn activate_profile_impl(app: &AppHandle, id: Uuid) -> anyhow::Result<
 
     persist_store(app)?;
 
+    // Update SSH config to point to this profile's key (if any)
+    let _ = crate::commands::ssh::write_ssh_config(app);
+
     // Emit event so the UI can refresh
     let _ = app.emit("profile-activated", id.to_string());
 

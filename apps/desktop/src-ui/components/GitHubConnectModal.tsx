@@ -22,7 +22,7 @@ interface Props {
 }
 
 export function GitHubConnectModal({ open, onClose, profile }: Props) {
-  const { refreshProfiles, settings } = useStore();
+  const { refreshProfiles } = useStore();
 
   const [step, setStep] = useState<Step>("idle");
   const [userCode, setUserCode] = useState("");

@@ -56,7 +56,7 @@ fn main() {
 
     // Locate the app data directory
     let app_data = resolve_app_data_dir();
-    let store_path = app_data.join("gitpersona").join("store.json");
+    let store_path = app_data.join("com.gitpersona.app").join("store.json");
 
     let store_content = match fs::read_to_string(&store_path) {
         Ok(c) => c,
@@ -127,7 +127,7 @@ fn retrieve_token(key: &str) -> Option<String> {
 fn resolve_app_data_dir() -> PathBuf {
     #[cfg(target_os = "windows")]
     {
-        env::var("APPDATA")
+        env::var("LOCALAPPDATA")
             .map(PathBuf::from)
             .unwrap_or_else(|_| PathBuf::from("."))
     }

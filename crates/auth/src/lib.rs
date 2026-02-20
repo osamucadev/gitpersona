@@ -8,7 +8,7 @@ const GITHUB_TOKEN_URL: &str = "https://github.com/login/oauth/access_token";
 const GITHUB_USER_URL: &str = "https://api.github.com/user";
 
 /// GitHub scopes we request. "repo" is needed for HTTPS clone/push.
-const SCOPES: &str = "read:user,repo";
+const SCOPES: &str = "read:user,repo,write:public_key";
 
 #[derive(Debug, Deserialize)]
 struct DeviceCodeResponse {

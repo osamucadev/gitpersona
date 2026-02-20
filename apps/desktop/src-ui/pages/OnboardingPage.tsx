@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { GitBranch, Loader2, Sparkles } from "lucide-react";
 import toast from "react-hot-toast";
-import { profileSchema, type ProfileFormData } from "@/lib/schemas";
+import { type ProfileFormData } from "@/lib/schemas";
 import { createProfile } from "@/lib/tauri";
 import { useStore } from "@/store/useStore";
 import { cn } from "@/lib/utils";
@@ -58,12 +57,11 @@ export function OnboardingPage() {
           </motion.div>
 
           <h1 className="font-display text-3xl font-800 tracking-tight">
-            Welcome to{" "}
-            <span className="text-gradient">Git Persona</span>
+            Welcome to <span className="text-gradient">Git Persona</span>
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Manage multiple Git identities without touching the terminal.
-            Let's create your first profile.
+            Manage multiple Git identities without touching the terminal. Let's create
+            your first profile.
           </p>
         </div>
 

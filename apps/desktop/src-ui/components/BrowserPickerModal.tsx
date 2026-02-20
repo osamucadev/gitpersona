@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, Globe, Monitor, X } from "lucide-react";
+import { CheckCircle, X } from "lucide-react";
 import type { BrowserEntry } from "@/types";
 import { cn } from "@/lib/utils";
 

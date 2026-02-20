@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { GitBranch, Plus, Terminal } from "lucide-react";
+import { GitBranch, Plus } from "lucide-react";
 import { useStore } from "@/store/useStore";
 import { ProfileCard } from "@/components/ProfileCard";
 import { ProfileModal } from "@/components/ProfileModal";
@@ -46,10 +46,7 @@ export function HomePage() {
         {profiles.length === 0 ? (
           <EmptyState onAdd={() => setShowCreate(true)} />
         ) : (
-          <motion.div
-            layout
-            className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2"
-          >
+          <motion.div layout className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
             <AnimatePresence>
               {sorted.map((profile) => (
                 <ProfileCard

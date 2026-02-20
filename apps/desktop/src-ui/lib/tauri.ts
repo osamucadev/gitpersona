@@ -78,3 +78,17 @@ export const getDiagnostics = (): Promise<Diagnostics> => invoke("get_diagnostic
 
 export const checkKeychainAvailable = (): Promise<boolean> =>
   invoke("check_keychain_available");
+
+// ─── SSH ──────────────────────────────────────────────────────────────────────
+
+export const generateSshKey = (profileId: string): Promise<import("@/types").SshInfo> =>
+  invoke("generate_ssh_key", { profileId });
+
+export const getSshPublicKey = (profileId: string): Promise<string | null> =>
+  invoke("get_ssh_public_key", { profileId });
+
+export const removeSshKey = (profileId: string): Promise<void> =>
+  invoke("remove_ssh_key", { profileId });
+
+export const addSshKeyToGithub = (profileId: string): Promise<number> =>
+  invoke("add_ssh_key_to_github", { profileId });

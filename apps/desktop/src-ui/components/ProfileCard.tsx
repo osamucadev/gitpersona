@@ -5,6 +5,7 @@ import {
   ChevronRight,
   Edit3,
   Github,
+  Key,
   Loader2,
   Play,
   Trash2,
@@ -20,6 +21,7 @@ import { useStore } from "@/store/useStore";
 import { ConfirmDialog } from "./ConfirmDialog";
 import { GitHubConnectModal } from "./GitHubConnectModal";
 import { ProfileModal } from "./ProfileModal";
+import { SshKeyModal } from "./SshKeyModal";
 
 interface ProfileCardProps {
   profile: Profile;
@@ -34,6 +36,7 @@ export function ProfileCard({ profile, isActive }: ProfileCardProps) {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [showConnect, setShowConnect] = useState(false);
+  const [showSsh, setShowSsh] = useState(false);
 
   const colorClasses = profileColor(profile.label);
   const dotColor = profileDotColor(profile.label);
@@ -166,6 +169,29 @@ export function ProfileCard({ profile, isActive }: ProfileCardProps) {
               )}
             </div>
 
+            {/* SSH status */}
+            <div className="flex items-center gap-2">
+              {profile.ssh?.configured ? (
+                <div className="flex items-center gap-1.5">
+                  <Key className="h-3.5 w-3.5 text-foreground/70" />
+                  <span className="text-xs text-foreground/70">SSH key</span>
+                  <span className={cn(
+                    "rounded-full px-1.5 py-0.5 text-[10px] font-medium",
+                    profile.ssh.githubKeyId
+                      ? "bg-blue-500/20 text-blue-400"
+                      : "bg-amber-500/20 text-amber-400"
+                  )}>
+                    {profile.ssh.githubKeyId ? "On GitHub" : "Local only"}
+                  </span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5">
+                  <Key className="h-3.5 w-3.5 text-muted-foreground/50" />
+                  <span className="text-xs text-muted-foreground">No SSH key</span>
+                </div>
+              )}
+            </div>
+
             {/* Updated at */}
             <p className="text-[10px] text-muted-foreground/50">
               Updated {relativeTime(profile.updatedAt)}
@@ -244,6 +270,18 @@ export function ProfileCard({ profile, isActive }: ProfileCardProps) {
               Connect GitHub
             </button>
           )}
+
+          {/* SSH Key */}
+          <button
+            onClick={() => setShowSsh(true)}
+            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-muted-foreground transition-all hover:bg-secondary hover:text-foreground ml-auto"
+          >
+            <Key className="h-3.5 w-3.5" />
+            SSH
+            {profile.ssh?.configured && (
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            )}
+          </button>
         </div>
       </motion.div>
 
@@ -276,6 +314,14 @@ export function ProfileCard({ profile, isActive }: ProfileCardProps) {
         <GitHubConnectModal
           open={showConnect}
           onClose={() => setShowConnect(false)}
+          profile={profile}
+        />
+      )}
+
+      {showSsh && (
+        <SshKeyModal
+          open={showSsh}
+          onClose={() => setShowSsh(false)}
           profile={profile}
         />
       )}
