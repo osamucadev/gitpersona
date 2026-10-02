@@ -1,4 +1,4 @@
-use gitpersona_core::{AppSettings, AppStore, Profile};
+use gitpersona_core::{AppStore, Profile};
 use std::sync::Mutex;
 use tauri::{App, Manager};
 use uuid::Uuid;
@@ -66,10 +66,4 @@ pub fn persist_store(app: &tauri::AppHandle) -> anyhow::Result<()> {
     let content = serde_json::to_string_pretty(&inner.store)?;
     std::fs::write(&store_path, content)?;
     Ok(())
-}
-
-pub fn get_settings_clone(app: &tauri::AppHandle) -> AppSettings {
-    let state = app.state::<AppState>();
-    let inner = state.inner.lock().unwrap();
-    inner.store.settings.clone()
 }

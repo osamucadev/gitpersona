@@ -2,7 +2,7 @@ use crate::state::{persist_store, AppState};
 use chrono::Utc;
 use gitpersona_core::{keychain_key, DeviceFlowStart, GitHubUser};
 use keyring::Entry;
-use tauri::{AppHandle, Manager, State};
+use tauri::{AppHandle, State};
 use uuid::Uuid;
 
 fn get_client_id() -> String {
