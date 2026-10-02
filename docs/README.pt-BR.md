@@ -1,19 +1,11 @@
-<p align="center">
-  <img src="docs/assets/git-persona.png" alt="Git Persona" width="96" />
-</p>
-
-<h1 align="center">Git Persona</h1>
-
-<p align="center">
-  <strong>Gerencie múltiplas identidades Git a partir de uma interface desktop.</strong>
-</p>
+# Guia do Git Persona
 
 Git Persona é um aplicativo desktop (Tauri v2 + Rust + React) para quem alterna entre
 mais de uma identidade Git no mesmo computador, como um perfil de trabalho e
 um pessoal. Em vez de editar `~/.gitconfig` na mão, o app guarda cada perfil (nome,
 e-mail, conta GitHub, chave SSH) e aplica a identidade correta com um clique.
 
----
+[English](README.en.md) | Português do Brasil
 
 ## Funcionalidades
 
@@ -141,7 +133,7 @@ gitpersona/
 │   ├── git/                # Wrapper para a CLI do git
 │   ├── auth/                # Cliente do GitHub Device Flow
 │   └── credential-helper/    # Binário `gitpersona-helper`, invocado pelo git
-├── docs/assets/            # Imagens usadas na documentação
+├── docs/                   # Guias, roteiro de release e imagens
 └── Cargo.toml               # Workspace Rust
 ```
 
@@ -346,7 +338,9 @@ causa o sintoma 2 acima.
    --workspace` se alterou código Rust). Use
    [Conventional Commits](https://www.conventionalcommits.org/pt-br/) nas mensagens
    (`feat:`, `fix:`, `docs:`, `refactor:`, `chore:`...).
-5. Abra o PR contra `main`, descrevendo a mudança e destacando qualquer alteração
+5. Registre mudanças visíveis ao usuário em `[Unreleased]` no
+   [CHANGELOG.md](../CHANGELOG.md).
+6. Abra o PR contra `main`, descrevendo a mudança e destacando qualquer alteração
    sensível à segurança.
 
 **Reportando bugs:** abra uma Issue com passos para reproduzir, comportamento
@@ -356,5 +350,5 @@ segurança. Faça o relato de forma privada aos mantenedores.
 
 ## Licença
 
-Este projeto é distribuído sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE)
+Este projeto é distribuído sob a licença MIT. Consulte o arquivo [LICENSE](../LICENSE)
 para conhecer os termos completos.
