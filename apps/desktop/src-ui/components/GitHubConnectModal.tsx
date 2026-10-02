@@ -71,8 +71,8 @@ export function GitHubConnectModal({ open, onClose, profile }: Props) {
       setShowBrowserPicker(false);
       try {
         await openUrlInBrowser(verificationUri, browser.executable);
+        // The effect below starts polling once the step changes.
         setStep("polling");
-        startPolling();
       } catch (err) {
         toast.error(`Failed to open browser: ${err}`);
       }
@@ -105,6 +105,8 @@ export function GitHubConnectModal({ open, onClose, profile }: Props) {
   useEffect(() => {
     if (step === "polling") startPolling();
     return stopPolling;
+    // Depending on startPolling would restart the timer on every parent render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   // Reset on close
