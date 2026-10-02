@@ -15,7 +15,7 @@ interface AppStore {
   updateSettings: (settings: AppSettings) => Promise<void>;
 }
 
-export const useStore = create<AppStore>((set, get) => ({
+export const useStore = create<AppStore>((set) => ({
   profiles: [],
   activeProfile: null,
   settings: null,
